@@ -190,12 +190,6 @@ window.onload = wrap_img;
 <p>This notebook shows you how to use Kubeflow to record metadata after build, train, and deploy models on Kubernetes.
 This notebook walks you through the following</p>
 <ul>
-<li>Building an XGBoost model inside a notebook</li>
-<li>Training the model inside the notebook</li>
-<li>Performing inference using the model inside the notebook</li>
-<li>Using Kubeflow Fairing to launch training jobs on Kubernetes</li>
-<li>Using Kubeflow Fairing to build and deploy a model using <a href="https://www.seldon.io/">Seldon Core</a>
-</li>
 <li>Using <a href="https://github.com/kubeflow/metadata">Kubeflow metadata</a> to record metadata about your models</li>
 </ul>
 
@@ -287,8 +281,7 @@ This notebook walks you through the following</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fairing:include-cell</span>
-<span class="k">class</span> <span class="nc">ModelServe</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ModelServe</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">50</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -307,26 +300,12 @@ This notebook walks you through the following</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_workspace</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_execution</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">),</span> <span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">)</span> <span class="o">=</span> <span class="n">read_synthetic_input</span><span class="p">()</span>
-        
-        <span class="c1"># Here we use Kubeflow's metadata library to record information</span>
-        <span class="c1"># about the training run to Kubeflow's metadata store.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exec</span><span class="o">.</span><span class="n">log_input</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">DataSet</span><span class="p">(</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">"xgboost synthetic data"</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">"synthetic-data"</span><span class="p">,</span>
             <span class="n">owner</span><span class="o">=</span><span class="s2">"someone@kubeflow.org"</span><span class="p">,</span>
             <span class="n">uri</span><span class="o">=</span><span class="s2">"file://path/to/dataset"</span><span class="p">,</span>
             <span class="n">version</span><span class="o">=</span><span class="s2">"v1.0.0"</span><span class="p">))</span>
-        
-        <span class="n">model</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span>
-                          <span class="n">train_y</span><span class="p">,</span>
-                          <span class="n">test_X</span><span class="p">,</span>
-                          <span class="n">test_y</span><span class="p">,</span>
-                          <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span>
-                          <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span><span class="p">)</span>
-
-        <span class="n">mae</span> <span class="o">=</span> <span class="n">eval_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">)</span>
         
         <span class="c1"># Here we log metrics about the model to Kubeflow's metadata store.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exec</span><span class="o">.</span><span class="n">log_output</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">Metrics</span><span class="p">(</span>
@@ -337,7 +316,6 @@ This notebook walks you through the following</p>
             <span class="n">metrics_type</span><span class="o">=</span><span class="n">metadata</span><span class="o">.</span><span class="n">Metrics</span><span class="o">.</span><span class="n">VALIDATION</span><span class="p">,</span>
             <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="s2">"mean_absolute_error"</span><span class="p">:</span> <span class="n">mae</span><span class="p">}))</span>
         
-        <span class="n">save_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_file</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exec</span><span class="o">.</span><span class="n">log_output</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">"housing-price-model"</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">"housing price prediction model using synthetic data"</span><span class="p">,</span>
@@ -354,12 +332,6 @@ This notebook walks you through the following</p>
             <span class="p">},</span>
             <span class="n">version</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="s2">"T"</span><span class="p">)))</span>
         
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">workspace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workspace</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_workspace</span> <span class="o">=</span> <span class="n">create_workspace</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workspace</span>
-    
     <span class="k">def</span> <span class="nf">create_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                
         <span class="n">r</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span>
             <span class="n">workspace</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">workspace</span><span class="p">,</span>
