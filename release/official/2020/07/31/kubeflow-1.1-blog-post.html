@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Kubeflow 1.1 improves ML Workflow Productivity, Isolation &amp; Security, and GitOps | Kubeflow</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Kubeflow 1.1 improves ML Workflow Productivity, Isolation &amp; Security, and GitOps" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Kubeflow 1.1 Blog Post" />
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-07-31T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Kubeflow 1.1 Blog Post","@type":"BlogPosting","headline":"Kubeflow 1.1 improves ML Workflow Productivity, Isolation &amp; Security, and GitOps","dateModified":"2020-07-31T00:00:00-05:00","datePublished":"2020-07-31T00:00:00-05:00","image":"https://blog.kubeflow.org/images/logo.png","url":"https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html"},"@context":"https://schema.org"}</script>
+{"description":"Kubeflow 1.1 Blog Post","url":"https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html","@type":"BlogPosting","headline":"Kubeflow 1.1 improves ML Workflow Productivity, Isolation &amp; Security, and GitOps","dateModified":"2020-07-31T00:00:00-05:00","datePublished":"2020-07-31T00:00:00-05:00","image":"https://blog.kubeflow.org/images/logo.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://blog.kubeflow.org/feed.xml" title="Kubeflow" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -25,31 +25,8 @@
 
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-135379910-2','auto');ga('require','displayfeatures');ga('send','pageview');</script>
 
-<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Kubeflow 1.1 improves ML Workflow Productivity, Isolation &amp; Security, and GitOps | Kubeflow</title>
-<meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Kubeflow 1.1 improves ML Workflow Productivity, Isolation &amp; Security, and GitOps" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Kubeflow 1.1 Blog Post" />
-<meta property="og:description" content="Kubeflow 1.1 Blog Post" />
-<link rel="canonical" href="https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html" />
-<meta property="og:url" content="https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html" />
-<meta property="og:site_name" content="Kubeflow" />
-<meta property="og:image" content="https://blog.kubeflow.org/images/logo.png" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-07-31T00:00:00-05:00" />
-<script type="application/ld+json">
-{"description":"Kubeflow 1.1 Blog Post","@type":"BlogPosting","headline":"Kubeflow 1.1 improves ML Workflow Productivity, Isolation &amp; Security, and GitOps","dateModified":"2020-07-31T00:00:00-05:00","datePublished":"2020-07-31T00:00:00-05:00","image":"https://blog.kubeflow.org/images/logo.png","url":"https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.kubeflow.org/release/official/2020/07/31/kubeflow-1.1-blog-post.html"},"@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
-<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
-<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://blog.kubeflow.org/feed.xml" title="Kubeflow" /><!-- the google_analytics_id gets auto inserted from the config file -->
-
-
-
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-135379910-2','auto');ga('require','displayfeatures');ga('send','pageview');</script>
-
-
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
 <script>
 function wrap_img(fn) {
@@ -126,11 +103,29 @@ window.onload = wrap_img;
     </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>The Kubeflow Community’s delivery of Kubeflow 1.1 offers users valuable ML workflow automation with Fairing and Kale along with MXNet, MPI and XGBoost distributed training operators. It extends isolation and security through the delivery of multi-user pipelines, CVE scanning, and support for Google’s Private GKE and Anthos. 1.1 provides a foundation for consistent and repeatable installation and operations using GitOps methodologies powered by blueprints and kpt primitives.</p>
+    <p>The Kubeflow Community’s delivery of Kubeflow 1.1 offers users valuable ML workflow automation with Fairing and Kale along with MXNet and XGBoost distributed training operators. It extends isolation and security through the delivery of multi-user pipelines, CVE scanning, and support for Google’s Private GKE and Anthos. 1.1 also improves Katib’s hyperparameter tuning features by offering new frameworks &amp; algorithms, and enables flexible configuration &amp; tuning options. 1.1 provides a foundation for consistent and repeatable installation and operations using GitOps methodologies powered by blueprints and kpt primitives.</p>
 
-<p>The ML productivity enhancements in 1.1 include end-to-end workflows using Fairing and Kale. The Fairing workflow enables users to build, train and deploy models from a notebook and <a href="https://github.com/kubeflow/fairing/releases/tag/v1.0.1">Fairing improvements</a> include the support of configuring environment variables and mounting secrets. Fairing also added a config map for a deployer and bug fixes for TensorRTSpec. The workflows enabled by <a href="https://github.com/kubeflow-kale/kale">Kale</a> include the ability to write model code in a notebook and then automatically build a Kubeflow pipeline that deploys, trains and tunes that model efficiently, using Katib and cached pipeline steps. Kubeflow 1.1 also delivers stable release deliveries of <a href="https://github.com/kubeflow/common/issues/97">MXNet, MPI and XGBoost operators</a>, which simplify distributed training on multiple nodes and speeds model creation.</p>
+<p>The ML productivity enhancements in 1.1 include end-to-end workflows using Fairing and Kale. The Fairing workflow enables users to build, train and deploy models from a notebook and <a href="https://github.com/kubeflow/fairing/releases/tag/v1.0.1">Fairing improvements</a> include the support of configuring environment variables and mounting secrets. Fairing also added a config map for a deployer and bug fixes for TensorRTSpec. The workflows enabled by <a href="https://github.com/kubeflow-kale/kale">Kale</a> include the ability to write model code in a notebook and then automatically build a Kubeflow pipeline that deploys, trains and tunes that model efficiently, using Katib and cached pipeline steps. Kubeflow 1.1 also delivers stable release deliveries of <a href="https://github.com/kubeflow/common/issues/97">MXNet and XGBoost operators</a>, which simplify distributed training on multiple nodes and speeds model creation.</p>
 
-<p>The isolation and security feature deliveries include Private GKE and Anthos support, a stable version of Kubeflow Pipelines with <a href="https://github.com/kubeflow/pipelines/projects/1">Multi-User Kubeflow Pipelines</a> support, and a process for Kubeflow container image scanning, <a href="https://docs.google.com/spreadsheets/d/1ijWIyjGQpDy68-vjBmLyFY0U1oGCT--A0nVGgzLGDhU/edit#gid=0">CVE reporting</a>, and an optional process for distroless image creation. 1.1 also includes <a href="https://github.com/kubeflow/kubeflow/issues/4960">options for authentication and authorization</a>. This includes the option for administrators to turn off self-service namespace creation mode, as admins may have other processes for namespace creation. The Community also developed a best practice to build user authorization in Kubeflow web apps using subject access review.</p>
+<p>The isolation and security feature deliveries include Private GKE and Anthos support, a stable version of Kubeflow Pipelines with <a href="https://www.kubeflow.org/docs/pipelines/multi-user/">Multi-User Kubeflow Pipelines</a> support, and a process for Kubeflow container image scanning, <a href="https://docs.google.com/spreadsheets/d/1ijWIyjGQpDy68-vjBmLyFY0U1oGCT--A0nVGgzLGDhU/edit#gid=0">CVE reporting</a>, and an optional process for distroless image creation. 1.1 also includes <a href="https://github.com/kubeflow/kubeflow/issues/4960">options for authentication and authorization</a>. This includes the option for administrators to turn off self-service namespace creation mode, as admins may have other processes for namespace creation. The Community also developed a best practice to build user authorization in Kubeflow web apps using subject access review.</p>
+
+<p>The 1.1 Katib improvements deliver new frameworks &amp; algorithms, and flexible configuration &amp; tuning options.  The new frameworks &amp; algorithms include:</p>
+
+<ul>
+  <li>Integrate goptuna framework with (CMA-ES) Covariance Matrix Adaptation Evolution Strategy algorithm.</li>
+  <li>DARTS (Differentiable Architecture Search) algorithm implementation.</li>
+  <li>Better support for HP frameworks (chocolate, hyperopt, skopt).</li>
+</ul>
+
+<p>Katib also adds these flexible configuration &amp; tuning options:</p>
+
+<ul>
+  <li>Implements a python SDK to run Katib experiments from Kubeflow notebooks.</li>
+  <li>Enables users to run experiments without the goal defined.</li>
+  <li>Provides a new trial template UI editor.</li>
+  <li>Enables users to view experiment and suggestion status in the UI, during the experiment run.</li>
+  <li>Adds a resume policy for experiments to clean-up suggestion resources.</li>
+</ul>
 
 <p>The installation and operations of Kubeflow have been enhanced to support GitOps methodologies. Several Kubeflow platform providers and software support vendors are developing time-saving GitOps processes to simplify and codify the installation, configuration and operations of the various layers in the Kubeflow 1.1 hardware and software stack. Some examples are provided in the next section.</p>
 
@@ -143,7 +138,7 @@ window.onload = wrap_img;
 <p>Kubeflow 1.1 demo scripts and workflow tutorials are available as validated by the individual platforms. Please find those below:</p>
 
 <ul>
-  <li><a href="https://medium.com/@sfiora/5821747f4fcb">Kubeflow 1.1 Tutorial for Automated Hyperparameter Tuning, Multi-user Pipelines, Pipeline Caching</a></li>
+  <li><a href="https://www.arrikto.com/model-experimentation/build-an-end-to-end-ml-workflow-from-notebook-to-hp-tuning-to-kubeflow-pipelines-with-kale/">Kubeflow 1.1 Tutorial for Automated Hyperparameter Tuning, Multi-user Pipelines, Pipeline Caching</a></li>
   <li><a href="http://docs.arrikto.com/integrations/kubeflow.html">GitOps for Kubeflow 1.1 on AWS EKS</a></li>
 </ul>
 
@@ -170,7 +165,8 @@ window.onload = wrap_img;
 
 <p>If you have questions, run into issues, please leverage the Slack channel and/or submit bugs via <a href="https://github.com/kubeflow">Kubeflow on GitHub</a>. Thanks from all of us in the Community, and we look forward to your success with Kubeflow 1.1.</p>
 
-<p>Special thanks to Yuan Tang (Ant Group), Dan Sun (Bloomberg), Josh Bottum (Arrikto), Constantinos Venetsanopoulos (Arrikto), Yannis Zarkadas (Arrikto),  Hamel Husain (GitHub), Willem Pienaar (GoJek), Yuan Gong (Google), Jeremy Lewi (Google), Animesh Singh (IBM) and Clive Cox (Seldon) for their help on this post.</p>
+<p>Special thanks to Yuan Tang (Ant Group), Josh Bottum (Arrikto), Constantinos Venetsanopoulos (Arrikto), Yannis Zarkadas (Arrikto), Jiaxin Shan (AWS), Dan Sun (Bloomberg), Andrey Velichkevich (Cisco), Krishna Durai (Cisco), Hamel Husain (GitHub), Willem Pienaar (GoJek), Yuan Gong (Google), Jeremy Lewi (Google), Animesh Singh (IBM) and Clive Cox (Seldon) for their help on this post.</p>
+
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
