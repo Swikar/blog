@@ -105,7 +105,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      4 min read
     
 </span></p>
 
@@ -147,7 +147,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Lineage-Tracking">Lineage Tracking </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Install-the-Kubeflow-metadata-library">Install the Kubeflow-metadata library </a></li>
-<li class="toc-entry toc-h2"><a href="#Create-a-workspace-and-a-run-in-a-workspace">Create a workspace and a run in a workspace </a></li>
+<li class="toc-entry toc-h2"><a href="#Create-a-new-Workspace-and-Run-in-a-workspace">Create a new Workspace and Run in a workspace </a></li>
 <li class="toc-entry toc-h2"><a href="#Create-an-execution-in-a-run">Create an execution in a run </a></li>
 <li class="toc-entry toc-h2"><a href="#Log-a-data-set-and-a-model">Log a data set and a model </a></li>
 <li class="toc-entry toc-h2"><a href="#Log-the-evaluation-of-a-model">Log the evaluation of a model </a></li>
@@ -178,11 +178,7 @@ window.onload = wrap_img;
 <a class="anchor" href="#Lineage-Tracking" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lineage Tracking<a class="anchor-link" href="#Lineage-Tracking"> </a>
 </h1>
 <ul>
-<li>The intent of this blog is to highlight how people can use metadata to do lineage tracking.</li>
-<li>We are going to create notebook that uses the metadata SDK to write a sequence of executions and artifacts to TFX metadata.</li>
-<li>We are going to open up lineage view in the KFP UI to view the lineage</li>
-<li>Here shows explanation of functionality of metadata sdk, but if you want to try and deploy model and want to see lineage tracking UI then skip to plot lineage UI section <a href="http://0.0.0.0:4000/jupyter/2020/07/28/lineage.html#Plot-the-lineage-graph">Plot the lineage graph</a>
-</li>
+<li>This blog post will first guide you through the metadata SDK API, to create a notebook and log several actions to the metadata DB. Afterwards, you will be able to navigate to the Kubeflow UI and the resulting lineage graph, which gives you a graphical representation of the dependencies between the objects you logged using the SDK.</li>
 </ul>
 
 </div>
@@ -259,16 +255,14 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-a-workspace-and-a-run-in-a-workspace">
-<a class="anchor" href="#Create-a-workspace-and-a-run-in-a-workspace" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a workspace and a run in a workspace<a class="anchor-link" href="#Create-a-workspace-and-a-run-in-a-workspace"> </a>
+<h2 id="Create-a-new-Workspace-and-Run-in-a-workspace">
+<a class="anchor" href="#Create-a-new-Workspace-and-Run-in-a-workspace" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a new Workspace and Run in a workspace<a class="anchor-link" href="#Create-a-new-Workspace-and-Run-in-a-workspace"> </a>
 </h2>
 <ul>
+<li>A <a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L92">Workspace</a> groups a set of pipelines or notebooks runs, and their related artifacts and executions</li>
 <li>
-<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L92">Workspace</a> groups a set of runs of pipelines, notebooks and their related artifacts and executions</li>
-<li>
-<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L59">Store</a> that connects to the Metadata gRPC service</li>
-<li>
-<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L227">Run</a> captures a run of pipeline or notebooks in a workspace and group execution</li>
+<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L59">Store</a> is an object that provides a connection to the Metadata gRPC service</li>
+<li>The <a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L227">Run</a> object captures a pipeline or notebook run in a workspace</li>
 </ul>
 
 </div>
@@ -324,8 +318,7 @@ window.onload = wrap_img;
 <a class="anchor" href="#Create-an-execution-in-a-run" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create an execution in a run<a class="anchor-link" href="#Create-an-execution-in-a-run"> </a>
 </h2>
 <ul>
-<li>
-<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L251">Execution</a> captures a run of pipeline or notebooks in a workspace and group executions. Execution also serves as object for logging artifacts as its input or output</li>
+<li>An <a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L251">Execution</a> is a specific instance of a run, and you can bind specific input/output artifacts to this instance. Execution also serves as object for logging artifacts as its input or output</li>
 </ul>
 
 </div>
@@ -375,12 +368,7 @@ window.onload = wrap_img;
 <a class="anchor" href="#Log-a-data-set-and-a-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log a data set and a model<a class="anchor-link" href="#Log-a-data-set-and-a-model"> </a>
 </h2>
 <ul>
-<li>
-<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L319">Log_input</a> log an artifact as an input of this execution</li>
-<li>
-<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L412">DataSet</a> captures a data set in a machine learning workflow</li>
-<li>
-<a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L518">Model</a> captures a machine learning model</li>
+<li>A <a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L319">Log_input</a> log an artifact as an input of this execution. Here exec.log_input accept an artifact class as an argument, a <a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L412">DataSet</a> is an artifact. Every artifacts has different paramenters such as name, uri, query. The way to create DataSet artifact is calling ready-to-use APIs metadata.DataSet and provide arguments</li>
 </ul>
 
 </div>
@@ -426,6 +414,16 @@ window.onload = wrap_img;
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>A <a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L337">Log_output</a> log an artifact as a output of this execution. Here exec.log_output accept an artifact class as an argument, a <a href="https://github.com/kubeflow/metadata/blob/25b44da29213968a2c438d24aad3656cc86d0499/sdk/python/kubeflow/metadata/metadata.py#L518">Model</a> is an artifact. Every artifacts has different paramenters such as name, uri, hyperparameters. The way to create Model artifact is calling ready-to-use APIs metadata.Model and provide arguments</li>
+</ul>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
